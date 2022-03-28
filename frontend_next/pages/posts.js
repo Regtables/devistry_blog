@@ -1,11 +1,24 @@
 import React from 'react'
+import axios from 'axios'
 
-const Posts = () => {
+import AllPosts from '../components/allPosts/AllPosts'
+
+const Posts = ({postsData}) => {
   return (
     <div>
-        All Posts
+        <AllPosts posts = {postsData.data} />
     </div>
   )
 }
 
 export default Posts
+
+export const getStaticProps = async () => {
+  const postReq = await axios.get('http://localhost:1337/api/posts')
+  
+  return {
+    props : {
+      postsData: postReq.data,
+    }
+  }
+}
