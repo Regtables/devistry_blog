@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const PostCard = ({post}) => {
-  console.log(post)
   return (
     <Link href = {`/posts/${post.id}`}>
         <motion.div 
