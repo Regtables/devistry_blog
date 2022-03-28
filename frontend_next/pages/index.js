@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import HomeHeader from '../components/homeHeader/HomeHeader'
+import HomeLatestPosts from '../components/homeLatestPosts/HomeLatestPosts'
 
 const Home = ({postsData}) => {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    setPosts(postsData.data)
-  }, [])
 
   return (
-    <div>
-     <h1>{posts[0]?.attributes?.title}</h1>
-     <h1>{posts[1]?.attributes?.title}</h1>
-    </div>
+    <main>
+        <HomeHeader />
+        <HomeLatestPosts posts = {postsData} />
+    </main>
   )
 }
 
@@ -20,7 +17,7 @@ export default Home
 
 export const getStaticProps = async () => {
   const postReq = await axios.get('http://localhost:1337/api/posts')
-  console.log(postReq)
+  
   return {
     props : {
       postsData: postReq.data,
