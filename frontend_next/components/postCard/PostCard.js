@@ -1,11 +1,20 @@
 import React from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 const PostCard = ({post}) => {
+  console.log(post)
   return (
-    <div>
-      <h3>{post.attributes.title}</h3>
-      <p>{post.attributes.description}</p>
-    </div>
+    <Link href = {`/posts/${post.id}`}>
+        <motion.div 
+          className = 'post-card'
+          whileHover = {{ scale: [1, 1.01] }}
+          transition = {{ duration: 0.3, ease: 'easeInOut' }}
+        >
+            <h3>{post.attributes.title}</h3>
+            <p>{post.attributes.description}</p>
+        </motion.div>
+    </Link>
   )
 }
 
